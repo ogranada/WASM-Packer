@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hello wasm-pack!</title>
+    <link rel="manifest" href="./manifest.json">
+    <style>
+      body {
+        background: #f6f6fe;
+      }
+    </style>
+      <!--
+        <link rel="swstylesheet" href="./public/bigss.min.css.xz">
+        <link rel="swstylesheet" href="./public/bigss.min.css">
+        <link rel="swstylesheet" href="./public/sample.css">
+      -->
+      <link rel="swstylesheet" href="./public/sample.css.xz">
+    <style>
+      .Pricing-logo {
+        margin: 1em;
+      }
+      .Pricing-title {
+        padding-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript
+      >This page contains webassembly and javascript content, please enable
+      javascript in your browser.</noscript
+    >    
+    <input type="checkbox" id="price" />
+    <main class="container">
+      <section class="Pricing">
+        <img class="Pricing-logo" src="/public/rust.png" alt="Rust Image" width="50">
+        <h1 class="Pricing-title">Rust WASM Decompressor</h1>
+        <section class="Pricing-periodicity">
+          <span class="Pricing-periodicityText">Annually</span>
+          <label class="Pricing-slider switch" for="price">
+            <label class="slider" for="price"></label>
+          </label>
+          <span class="Pricing-periodicityText">Monthly</span>
+        </section>
+      </section>
+      <section class="CardsContainer">
+        <section class="PriceCard">
+          <h2 class="PriceCard-title">Basic</h2>
+          <ul class="PriceCard-list">
+            <li class="PriceCard-listItem">
+              <span class="PriceCard-ammount PriceCard-monthPrice">19.99</span>
+              <span class="PriceCard-ammount PriceCard-anualPrice">199.99</span>
+            </li>
+            <li class="PriceCard-listItem">
+              500 GB Storage
+            </li>
+            <li class="PriceCard-listItem">
+              2 Users Allowed
+            </li>
+            <li class="PriceCard-listItem">
+              Send up to 3 GB
+            </li>
+            <li class="PriceCard-listItem">
+              <button class="PriceCard-button">Learn More</button>
+            </li>
+          </ul>
+        </section>
+
+        <section class="PriceCard">
+          <h2 class="PriceCard-title">Professional</h2>
+          <ul class="PriceCard-list">
+            <li class="PriceCard-listItem">
+              <span class="PriceCard-ammount PriceCard-monthPrice">24.99</span>
+              <span class="PriceCard-ammount PriceCard-anualPrice">249.99</span>
+            </li>
+            <li class="PriceCard-listItem">
+              1 TB Storage
+            </li>
+            <li class="PriceCard-listItem">
+              5 Users Allowed
+            </li>
+            <li class="PriceCard-listItem">
+              Send up to 10 GB
+            </li>
+            <li class="PriceCard-listItem">
+              <button class="PriceCard-button">Learn More</button>
+            </li>
+          </ul>
+        </section>
+
+        <section class="PriceCard">
+          <h2 class="PriceCard-title">Master</h2>
+          <ul class="PriceCard-list">
+            <li class="PriceCard-listItem">
+              <span class="PriceCard-ammount PriceCard-monthPrice">39.99</span>
+              <span class="PriceCard-ammount PriceCard-anualPrice">399.99</span>
+            </li>
+            <li class="PriceCard-listItem">
+              2 TB Storage
+            </li>
+            <li class="PriceCard-listItem">
+              10 Users Allowed
+            </li>
+            <li class="PriceCard-listItem">
+              Send up to 20 GB
+            </li>
+            <li class="PriceCard-listItem">
+              <button class="PriceCard-button">Learn More</button>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      function updateStylesheetRels() {
+        Array.from(document.querySelectorAll('[rel="swstylesheet"]'))
+              .map(node => node.setAttribute('rel', 'stylesheet'));
+      }
+      async function loadServiceWorker() {
+        const SW = "/worker.js";
+        if (!("serviceWorker" in navigator)) {
+          // service workers not supported 😣
+          return;
+        }
+        try {
+          if (!navigator.serviceWorker.controller) {
+            const swReg = await navigator.serviceWorker.register(SW);
+            console.log('Registered in this load');
+            navigator.serviceWorker.ready.then(updateStylesheetRels);
+          } else {
+            console.log('Registered previously');
+            updateStylesheetRels();
+          }
+        } catch (error) {
+          console.error("SW registration failed! 😱", error);
+        }
+      }
+      (function () {
+        loadServiceWorker();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "Wasm",
+  "short_name": "Mi PWA",
+  "lang": "es-CO",
+  "start_url": "/",
+  "background_color": "#2C3E50",
+  "theme_color": "#18BC9C",
+  "display": "standalone",
+  "icons": []
+}
