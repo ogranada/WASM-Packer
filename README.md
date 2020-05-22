@@ -3,7 +3,7 @@
   <h1><code> Styles Compressor </code></h1>
 
   <p>
-    This is a project to use compressed style sheets.
+    This is a <strong> Proof Of Concept (PoC) </strong> project to use compressed style sheets.
   </p>
 </div>
 
