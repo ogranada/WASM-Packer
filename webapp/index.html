@@ -121,7 +121,7 @@
         }, e ? 400 : 1);
       }
       async function loadServiceWorker() {
-        const SW = "/worker.js";
+        const SW = "./worker.js";
         if (!("serviceWorker" in navigator)) {
           // service workers not supported 😣
           return;
