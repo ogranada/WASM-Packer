@@ -57,6 +57,7 @@ async function loadXZStyles(resource) {
 }
 
 addEventListener("fetch", (event) => {
+  console.log('fetch', event.request.url);
   if (event.request.url.endsWith(".css.xz")) {
     return event.respondWith(loadXZStyles(event.request.url));
   }
@@ -72,12 +73,10 @@ addEventListener("fetch", (event) => {
 
 
 addEventListener("install", (event) => {
-  console.log('install...');
+  console.log('install...', (new Date()).getTime());
 });
 
 addEventListener("activate", (event) => {
-  console.log('Activate...');
-  loadCompressor().then(() => {
-    self.clients.claim();
-  });
+  console.log('Activate...', (new Date()).getTime());
+  loadCompressor().then(() => event.waitUntil(self.clients.claim() ));
 });

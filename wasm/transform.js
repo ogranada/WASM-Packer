@@ -19,9 +19,9 @@ export function WrapWASMModule(wasm) {
     /////// END PRE-GENERATED INFO
     return {
         setWasm,
-        ${functions},
+        ${functions}${functions?',':''}
         "./${modName}.js": {
-            ${constFunctions},
+            ${constFunctions}${constFunctions?',':''}
         }
     };
 }
@@ -42,8 +42,8 @@ function main(){
     .map(x => x.split(' ')[2].split('(')[0])
     ;
   const expConsts = exportedValues
-    .filter(x => x.includes('const'))
-    .map(x => x.split(' ')[2])
+    .filter(x => x.includes('export const'))
+    .map(x => x.split(/const\s+/g)[1].split(' ')[0])
     ;
   const resultJsFile = jsFileParts
     .filter(x => !x.includes(`${jsModName}.wasm`))

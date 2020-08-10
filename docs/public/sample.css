@@ -1,0 +1,251 @@
+:root {
+    font-size: 15px;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .container {
+    height: 100vh;
+    background: url("../images/bg-top.svg"), url("../images/bg-bottom.svg");
+    background-color: #f6f6fe;
+    background-repeat: no-repeat;
+    background-position: calc(100vw - 12em) -2em, bottom left;
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .CardsContainer {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 66vw;
+      margin-left: 17vw;
+    }
+  }
+  
+  :root {
+    --btn-height: 28px;
+    --btn-width: calc(var(--btn-height) * 1.8);
+    --btn-circle: calc(var(--btn-height) - 0.5em);
+    --btn-circle-space: calc(var(--btn-circle) * 0.05);
+    --btn-circle-translation: calc(var(--btn-width) - var(--btn-circle) * 1.5);
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    height: var(--btn-height);
+    width: var(--btn-width);
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: var(--btn-height);
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: var(--btn-circle);
+    width: var(--btn-circle);
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  #price:checked + main .switch > .slider {
+    background-color: #2196f3;
+  }
+  
+  #price:focus + main .switch > .slider {
+    -webkit-box-shadow: 0 0 1px #2196f3;
+            box-shadow: 0 0 1px #2196f3;
+  }
+  
+  #price:checked + main .switch > .slider:before {
+    -webkit-transform: translateX(var(--btn-circle-translation));
+    transform: translateX(var(--btn-circle-translation));
+  }
+  
+  #price {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  #price + main .switch > .slider {
+    background: -webkit-gradient(linear, left top, right top, from(#a3a8f0), to(#696fdd));
+    background: linear-gradient(90deg, #a3a8f0, #696fdd);
+  }
+  
+  #price + main .PriceCard-monthPrice {
+    display: none;
+  }
+  
+  #price:checked + main .PriceCard-monthPrice {
+    display: inline;
+  }
+  
+  #price:checked + main .PriceCard-anualPrice {
+    display: none;
+  }
+  
+  .Pricing {
+    padding: 1em 0 5em 0;
+  }
+  
+  .Pricing-title, .Pricing-periodicityText {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .Pricing-title {
+    margin: 0;
+    color: #6d708d;
+    padding: 2em 0 1em 0;
+    font-size: 2em;
+  }
+  
+  .Pricing-periodicityText {
+    color: #b3b5c6;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .Pricing-periodicity {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .Pricing-slider {
+    margin: 0 1em;
+  }
+  
+  .PriceCard {
+    background-color: white;
+    width: calc(100vw - 3em);
+    margin: 1.5em;
+    margin-left: 1.5em;
+    padding: 2em;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border-radius: 0.7em;
+    -webkit-box-shadow: 0 0.5em 3em -1em #a3a8f0;
+            box-shadow: 0 0.5em 3em -1em #a3a8f0;
+    -webkit-transition: width 1s ease;
+    transition: width 1s ease;
+    -webkit-transition: height 1s ease;
+    transition: height 1s ease;
+    -webkit-transition: background 1s ease;
+    transition: background 1s ease;
+  }
+  
+  .PriceCard-title {
+    color: #6d708d;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .PriceCard-ammount {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    color: #494c5f;
+  }
+  
+  .PriceCard-ammount::before {
+    content: "$";
+    font-size: 0.6em;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    bottom: 0.15em;
+  }
+  
+  .PriceCard-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .PriceCard-listItem {
+    padding: 1em 0;
+  }
+  
+  .PriceCard-listItem:not(:last-child) {
+    font-family: "Montserrat", sans-serif;
+    border-bottom: 1px solid #b3b5c6;
+  }
+  
+  .PriceCard-button {
+    background: -webkit-gradient(linear, left top, right top, from(#a3a8f0), to(#696fdd));
+    background: linear-gradient(90deg, #a3a8f0, #696fdd);
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 1em;
+    font-size: 1em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .PriceCard:nth-child(2n) {
+    background: -webkit-gradient(linear, left top, left bottom, from(#a3a8f0), to(#696fdd));
+    background: linear-gradient(180deg, #a3a8f0, #696fdd);
+  }
+  
+  .PriceCard:nth-child(2n) .PriceCard-button {
+    background: white;
+    color: #696fdd;
+  }
+  
+  .PriceCard:nth-child(2n) .PriceCard-title,
+  .PriceCard:nth-child(2n) .PriceCard-ammount,
+  .PriceCard:nth-child(2n) .PriceCard-listItem {
+    color: white;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .PriceCard {
+      margin: 0;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+    .PriceCard:nth-child(2n) {
+      max-width: 22vw;
+      padding: 3em 2em;
+    }
+    .PriceCard:not(:nth-child(2n)) {
+      max-width: 20vw;
+      padding: 2em 1em;
+    }
+  }
+  /*# sourceMappingURL=main.css.map */
